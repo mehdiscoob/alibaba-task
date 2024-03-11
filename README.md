@@ -45,6 +45,7 @@ Feel free to utilize these helper endpoints and commands for managing orders, tr
     - **Description:** You can login with this API. Use Sample data(Client or Admin) for login.
     - **Controller Method:** `LoginController::login`
     - **Route Name:** `login`
+    - **Practical:** It gives you user information and you should use access_token for all APIs Authorization
     - **Permissions:**
         - All
 
