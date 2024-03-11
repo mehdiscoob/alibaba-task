@@ -28,7 +28,7 @@ Access your Laravel app at http://localhost:9000. Code changes reflect in real-t
 ### Helpers
 
 - **Sapmle Data:**
-    - **User:** `{username:"admin@gmail.com",password:"123456789"}`
+    - **Admin:** `{username:"admin@gmail.com",password:"123456789"}`
     - **Client:** `{username:"client@gmail.com",password:"123456789"}`
 
 - **Refresh Database:**
@@ -38,6 +38,15 @@ Access your Laravel app at http://localhost:9000. Code changes reflect in real-t
 Feel free to utilize these helper endpoints and commands for managing orders, trips, and database refresh operations in your Laravel application!
 
 ### APIs for Managing Articles
+
+#### Login
+
+- **GET `http://localhost:9000/login`**
+    - **Description:** You can login with this API. Use Sample data(Client or Admin) for login.
+    - **Controller Method:** `LoginController::login`
+    - **Route Name:** `login`
+    - **Permissions:**
+        - All
 
 #### Retrieve Articles
 
