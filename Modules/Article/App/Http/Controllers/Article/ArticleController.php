@@ -5,6 +5,7 @@ namespace Modules\Article\App\Http\Controllers\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Modules\Article\App\Http\Requests\Article\ChangeStatusArticleRequest;
 use Modules\Article\App\Http\Requests\Article\DeleteArticleRequest;
 use Modules\Article\App\Http\Requests\Article\FindByIdRequest;
 use Modules\Article\App\Http\Requests\Article\GetArticlePaginateRequest;
@@ -70,6 +71,22 @@ class ArticleController extends Controller
     public function update(UpdateArticleRequest $request,$id)
     {
         return $this->articleService->update($id,$request->all());
+    }
+
+    /**
+     * Change the status of an article.
+     *
+     * This method updates the status of the article with the given ID using the provided data.
+     * The status can be either "draft" or "publish".
+     * It delegates the update operation to the underlying article repository.
+     *
+     * @param int $id The ID of the article to update.
+     * @param array $data The data containing the new status information. Status can be "draft" or "publish".
+     * @return bool Returns true if the article status was successfully updated, false otherwise.
+     */
+    public function changeStatusArticle(ChangeStatusArticleRequest $request,int $id): bool
+    {
+        return $this->articleService->changeStatusArticle($id,$request->all());
     }
 
     /**

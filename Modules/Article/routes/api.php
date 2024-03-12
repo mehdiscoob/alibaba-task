@@ -19,5 +19,7 @@ Route::middleware(['auth:api'])->prefix('article')->group(function () {
     Route::get('/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"findById"])->name('article.id');
     Route::post('/', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"store"])->name('article.create');
     Route::patch('/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"update"])->name('article.update.id');
+    Route::delete('/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"delete"])->name('article.delete.id');
+    Route::patch('/status/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"update"])->name('article.change.status.id');
 
 });

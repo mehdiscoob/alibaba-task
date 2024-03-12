@@ -21,7 +21,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
-            'user_id' => User::query()->inRandomOrder()->first(),
+            'user_id' => User::find(1)->id,
             'publication_date' => now()->toDateTimeString(),
             'publication_status' => $this->faker->randomElement(['draft', 'publish']),
         ];

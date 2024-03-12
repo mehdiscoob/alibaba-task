@@ -81,7 +81,31 @@ class ArticleService implements ArticleServiceInterface
         return $this->articleRepository->update($id, $data);
     }
 
-    public function deleteById(int $id):bool
+    /**
+     * Change the status of an article.
+     *
+     * This method updates the status of the article with the given ID using the provided data.
+     * The status can be either "draft" or "publish".
+     * It delegates the update operation to the underlying article repository.
+     *
+     * @param int $id The ID of the article to update.
+     * @param array $data The data containing the new status information. Status can be "draft" or "publish".
+     * @return bool Returns true if the article status was successfully updated, false otherwise.
+     */
+    public function changeStatusArticle(int $id, array $data): bool
+    {
+        return $this->articleRepository->update($id, $data);
+    }
+
+    /**
+     * Delete an article by its ID.
+     *
+     * This method deletes the article with the specified ID from the storage via the article repository.
+     *
+     * @param int $id The ID of the article to delete.
+     * @return bool Returns true if the article was successfully deleted, false otherwise.
+     */
+    public function deleteById(int $id): bool
     {
         return $this->articleRepository->deleteById($id);
     }

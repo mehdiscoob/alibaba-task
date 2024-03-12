@@ -48,4 +48,17 @@ interface ArticleServiceInterface
      * @return bool True if the update is successful, false otherwise.
      */
     public function update(int $id, array $data): bool;
+
+
+    /**
+     * Change the status of an article.
+     *
+     * This method updates the status of the article with the given ID using the provided data.
+     * It delegates the update operation to the underlying article repository.
+     *
+     * @param int $id The ID of the article to update.
+     * @param array $data The data containing the new status information.
+     * @return bool Returns true if the article status was successfully updated, false otherwise.
+     */
+    public function changeStatusArticle(int $id, array $data): bool;
 }

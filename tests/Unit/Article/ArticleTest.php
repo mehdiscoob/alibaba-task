@@ -10,7 +10,12 @@ use Tests\TestCase;
 
 class ArticleTest extends TestCase
 {
-    /** @test */
+
+    /**
+     * Test creating an article.
+     *
+     * @test
+     */
     public function it_creates_an_article()
     {
         $user = User::factory()->count(1)->create()[0]->generate_token();
@@ -26,7 +31,11 @@ class ArticleTest extends TestCase
         $this->assertDatabaseHas('articles', ['title' => $article->title]); // Assuming 'orders' is your orders table
     }
 
-    /** @test */
+    /**
+     * Test updating an article.
+     *
+     * @test
+     */
     public function it_updates_an_article()
     {
         $user = User::factory()->count(1)->create()[0]->generate_token();
@@ -51,7 +60,11 @@ class ArticleTest extends TestCase
         $this->assertDatabaseHas('articles', ['title' => $data->title]); // Assuming 'orders' is your orders table
     }
 
-    /** @test */
+    /**
+     * Test finding an article by ID.
+     *
+     * @test
+     */
     public function it_find_an_article_by_id()
     {
         $article = Article::factory()->create();
@@ -62,7 +75,11 @@ class ArticleTest extends TestCase
         $this->assertDatabaseHas('articles', ['title' => $article->title]);
     }
 
-    /** @test */
+    /**
+     * Test paginating articles.
+     *
+     * @test
+     */
     public function it_articles_paginate()
     {
         $user = User::factory()->create()->generate_token();
@@ -72,7 +89,42 @@ class ArticleTest extends TestCase
         $response->assertStatus(200);
     }
 
-    protected function setUp(): void
+    /**
+     * Test changing the status of an article.
+     *
+     * @test
+     */
+    public function it_change_status_an_articles()
+    {
+        $user = User::factory()->create()->generate_token();
+        $user->roles()->attach(2);
+        $article = Article::factory()->create();
+        $data = [];
+        if ($article->status == "draft") {
+            $data['publication_status'] = "publish";
+        } else {
+            $data['publication_status'] = "draft";
+        }
+        $response = $this->patchJson("/api/article/status/$article->id",$data, ["Authorization" => "Bearer " . $user->access_token]);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * Test deleting an article.
+     *
+     * @test
+     */
+    public function it_delete_an_articles()
+    {
+        $user = User::factory()->create()->generate_token();
+        $user->roles()->attach(2);
+        $article = Article::factory()->create();
+        $response = $this->deleteJson("/api/article/$article->id",[], ["Authorization" => "Bearer " . $user->access_token]);
+        $response->assertStatus(200);
+    }
+
+    protected
+    function setUp(): void
     {
         parent::setUp();
     }
