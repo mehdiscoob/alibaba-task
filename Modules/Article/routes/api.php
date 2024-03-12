@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:api'])->prefix('article')->group(function () {
     Route::get('/', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"getArticlePaginate"])->name('article');
+    Route::get('/by-user', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"getArticelsByUserID"])->name('article.by.user');
     Route::get('/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"findById"])->name('article.id');
     Route::post('/', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"store"])->name('article.create');
     Route::patch('/{id}', [\Modules\Article\App\Http\Controllers\Article\ArticleController::class,"update"])->name('article.update.id');

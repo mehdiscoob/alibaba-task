@@ -42,6 +42,22 @@ class ArticleService implements ArticleServiceInterface
     }
 
     /**
+     * Paginate the articles.
+     *
+     * @param int $per_page The number of articles per page. Default is 50.
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getArticelsByUserID(?array $data): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    {
+        if (!isset($data['perPage'])) {
+            $data['perPage'] = 20;
+        }
+        $userID=Auth::id();
+        return $this->articleRepository->getArticelsByUserID($data['perPage'],$userID);
+    }
+
+    /**
      * Create a new Article with the provided data.
      *
      * @param array $data The data for the new Article.

@@ -4,23 +4,25 @@ namespace Modules\Article\App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateArticleRequest extends FormRequest
+class GetArticleByUserPaginateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'publication_status' => 'required|in:draft,publish'
+            //
         ];
     }
 
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return true;
+        $isAdmin = $this->user()->hasRole("client");
+
+        return $isAdmin;
     }
 }

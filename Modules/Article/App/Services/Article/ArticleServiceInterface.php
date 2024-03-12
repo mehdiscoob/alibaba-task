@@ -19,6 +19,15 @@ interface ArticleServiceInterface
     public function getArticlePaginate(?array $data): Paginator;
 
     /**
+     * Paginate the articles.
+     *
+     * @param int $per_page The number of articles per page. Default is 50.
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getArticelsByUserID(?array $data): \Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+    /**
      * Create a new Article with the provided data.
      *
      * @param array $data The data for the new Article.

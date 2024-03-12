@@ -90,6 +90,20 @@ class ArticleTest extends TestCase
     }
 
     /**
+     * Test paginating articles by User ID.
+     *
+     * @test
+     */
+    public function it_articles_by_user_id_paginate()
+    {
+        $user = User::factory()->create()->generate_token();
+        $user->roles()->attach(3);
+        Article::factory()->count(500)->create(["user_id"=>$user->id]);
+        $response = $this->getJson('api/article/by-user', ["Authorization" => "Bearer " . $user->access_token]);
+        $response->assertStatus(200);
+    }
+
+    /**
      * Test changing the status of an article.
      *
      * @test

@@ -15,7 +15,18 @@ interface ArticleRepositoryInterface
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginator();
+    public function paginator():\Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
+    /**
+     * Retrieve articles by user ID.
+     *
+     * Retrieves a paginated list of articles authored by the specified user ID.
+     *
+     * @param int $per_page The number of articles per page to retrieve. Default is 50.
+     * @param int $userID The ID of the user whose articles are to be retrieved.
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator Paginated list of articles.
+     */
+    public function getArticelsByUserID(int $per_page = 50, int $userID): \Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
     /**
      * Find an Article by ID.
@@ -23,7 +34,7 @@ interface ArticleRepositoryInterface
      * @param int $id
      * @return Article|null
      */
-    public function find(int $id);
+    public function find(int $id):Article|null;
 
 
     /**
@@ -41,7 +52,7 @@ interface ArticleRepositoryInterface
      * @param array $data
      * @return Article|null
      */
-    public function update(int $id, array $data);
+    public function update(int $id, array $data):bool;
 
 
     /**

@@ -62,6 +62,13 @@ your Laravel application!
     - **Permissions:**
         - Admin
 
+- **GET `http://localhost:9000/article/by-user`**
+    - **Description:** Retrieves a paginated list of articles By ID.
+    - **Controller Method:** `ArticleController::getArticelsByUserID`
+    - **Route Name:** `article.by.user`
+    - **Permissions:**
+        - Client
+
 #### Retrieve Article by ID
 
 - **GET `http://localhost:9000/article/{id}`**

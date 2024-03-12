@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Modules\Article\App\Http\Requests\Article\ChangeStatusArticleRequest;
 use Modules\Article\App\Http\Requests\Article\DeleteArticleRequest;
 use Modules\Article\App\Http\Requests\Article\FindByIdRequest;
+use Modules\Article\App\Http\Requests\Article\GetArticleByUserPaginateRequest;
 use Modules\Article\App\Http\Requests\Article\GetArticlePaginateRequest;
 use Modules\Article\App\Http\Requests\Article\UpdateArticleRequest;
 use Modules\Article\App\Services\Article\ArticleService;
@@ -51,8 +52,20 @@ class ArticleController extends Controller
     }
 
     /**
+     * Paginate the articles.
+     *
+     * @param GetArticleByUserPaginateRequest $request
+     * @return mixed
+     */
+    public function getArticelsByUserID(GetArticleByUserPaginateRequest $request)
+    {
+        return $this->articleService->getArticelsByUserID($request->all());
+    }
+
+    /**
      * Find an Article by ID.
      *
+     * @param FindByIdRequest $request
      * @return mixed
      */
     public function findById(FindByIdRequest $request,$id)
@@ -81,7 +94,7 @@ class ArticleController extends Controller
      * It delegates the update operation to the underlying article repository.
      *
      * @param int $id The ID of the article to update.
-     * @param array $data The data containing the new status information. Status can be "draft" or "publish".
+     * @param FindByIdRequest $request
      * @return bool Returns true if the article status was successfully updated, false otherwise.
      */
     public function changeStatusArticle(ChangeStatusArticleRequest $request,int $id): bool

@@ -21,7 +21,6 @@ class GetArticlePaginateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        dump($this->user()->id);
         $roles = ["administrator", "super_admin"];
         $isAdmin = $this->user()->hasRoleArray($roles);
 
